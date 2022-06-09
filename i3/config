@@ -1,0 +1,180 @@
+########
+# LOOK #
+########
+
+# border
+default_border pixel 2
+
+# gaps
+hide_edge_borders both
+gaps inner 20
+gaps outer 0
+
+# font
+font pango: Fantasque Sans Mono 8
+
+
+
+#############
+# BEHAVIOUR #
+#############
+
+# pop-ups
+no_focus [window_role="pop-up"]
+
+# back and forth
+workspace_auto_back_and_forth yes
+
+
+
+###########
+# STARTUP #
+###########
+
+exec --no-startup-id dex --autostart --environment i3
+
+# Network manager on the system tray
+exec --no-startup-id nm-applet
+
+# Bluetooth manager on the system tray
+exec --no-startup-id blueman-applet
+
+# Wallpaper
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper
+
+# Compositor
+exec --no-startup-id picom
+
+# shutter
+exec --no-startup-id shutter --min_at_startup --disable_systray
+
+# redshift
+exec --no-startup-id redshift -b 1.0:0.2 -l 49:16 -t 6500:3500
+
+# Setting cursor (pirate looks insanely cool with breeze hacked)
+exec_always --no-startup-id xsetroot -xcf /usr/share/icons/Breeze_Hacked/cursors/pirate 36
+
+# Polybar
+exec --no-startup-id polybar
+
+# Alternating layouts
+exec_always --no-startup-id alternating_layouts.py
+
+# Keyboard layout
+exec_always --no-startup-id setxkbmap -layout us,hu -option grp:win_space_toggle
+
+
+
+############
+# BINDINGS #
+############
+
+set $mod Mod4
+
+# pactl to adjust volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# xbacklight to adjust sceen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +2
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -2
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Restart polybar
+bindsym $mod+Shift+p exec polybar-msg cmd restart
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8
+bindsym $mod+Shift+9 move container to workspace 9; workspace 9
+bindsym $mod+Shift+0 move container to workspace 10; workspace 10
+
+# Next/previous workspace
+bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+h workspace prev
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Lock screen
+bindsym $mod+Shift+x exec i3lock -i ~/.config/i3/wallpaper
+
+# dmenu
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run -b -l -p -fn "Fantasque Sans Mono:Bold:size=13" -nb \#001721 -nf \#eee8d5 -sb \#268bd2 -sf \#001721
+
+# xkill
+bindsym $mod+x exec sleep 0.2 && xkill > /dev/null 2>&1 &
+
+# shutter
+bindsym $mod+Print exec shutter -s -o "~/Documents/Screenshots/%y-%m-%d_%T.png"
+bindsym Print exec shutter -f -o "~/Documents/Screenshots/%y-%m-%d_%T.png"
+
+# Toggle grayscale
+bindsym $mod+Shift+g exec sh ~/.config/i3/toggle-monitor-grayscale.sh
+
+# Other applications
+bindsym $mod+Return exec alacritty
+bindsym $mod+b exec qutebrowser
+bindsym $mod+m exec min
+bindsym $mod+d exec discord
+bindsym $mod+e exec alacritty -t Ranger --class ranger -e ranger
+bindsym $mod+a exec alacritty -t HTop --class htop -e htop
+bindsym $mod+w exec alacritty -t nmtui --class nmtui -e nmtui
+bindsym $mod+t exec emacs
+
+# Using polybar
+bar {
+	tray_output none
+	mode invisible
+}
