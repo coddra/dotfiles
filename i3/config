@@ -148,7 +148,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Lock screen
-bindsym $mod+Shift+x exec i3lock -i ~/.config/i3/wallpaper
+bindsym $mod+Shift+x exec i3lock -k -B 8 --radius 105 --ring-width 10 --inside-color=77777755 --ring-color=eeeeee55 --indicator --keyhl-color=ffffff55 --bshl-color=00000055 --insidewrong-color=eeeeee55 --ringwrong-color=ffffff55 --insidever-color=77777755 --ringver-color=eeeeee55 --time-font="Fantasque Sans Mono" --date-font="Fantasque Sans Mono" --verif-font="Fantasque Sans Mono" --wrong-font="Fantasque Sans Mono" --keylayout 2 --layout-font="Fantasque Sans Mono" --verif-text="Verifying..." --wrong-text="Wrong!" --noinput-text="No input!" --pass-media-keys --pass-screen-keys
 
 # dmenu
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run -b -l -p -fn "Fantasque Sans Mono:Bold:size=13" -nb \#001721 -nf \#eee8d5 -sb \#268bd2 -sf \#001721
@@ -169,6 +169,7 @@ bindsym $mod+b exec qutebrowser
 bindsym $mod+m exec min
 bindsym $mod+d exec discord
 bindsym $mod+e exec alacritty -t Ranger --class ranger -e ranger
+bindsym $mod+Shift+e exec alacritty -t Ranger --class ranger -e doas ranger
 bindsym $mod+a exec alacritty -t HTop --class htop -e htop
 bindsym $mod+w exec alacritty -t nmtui --class nmtui -e nmtui
 bindsym $mod+t exec emacs
