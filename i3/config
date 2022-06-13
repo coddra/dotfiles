@@ -55,7 +55,10 @@ exec --no-startup-id redshift -b 1.0:0.2 -l 49:16 -t 6500:3500
 exec_always --no-startup-id xsetroot -xcf /usr/share/icons/Breeze_Hacked/cursors/pirate 36
 
 # Polybar
-exec --no-startup-id polybar
+exec --no-startup-id polybar placeholder
+exec --no-startup-id polybar main
+exec --no-startup-id polybar workspaces
+exec --no-startup-id polybar tray
 
 # Alternating layouts
 exec_always --no-startup-id alternating_layouts.py
