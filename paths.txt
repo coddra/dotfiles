@@ -11,3 +11,6 @@
 ~/.config/ranger/rifle.conf=ranger/rifle.conf
 ~/.config/ranger/scope.sh=ranger/scope.sh
 ~/.config/dunst/dunstrc=dunst/dunstrc
+~/.doom.d/init.el=doom/init.el
+~/.doom.d/config.el=doom/config.el
+~/.doom.d/packages.el=doom/packages.el

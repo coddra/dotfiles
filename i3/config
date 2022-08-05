@@ -49,7 +49,7 @@ exec --no-startup-id picom
 exec --no-startup-id shutter --min_at_startup --disable_systray
 
 # redshift
-exec --no-startup-id redshift -b 1.0:0.2 -l 49:16 -t 6500:3500
+exec --no-startup-id redshift -b 1.0:0.3 -l 49:16 -t 6500:3500
 
 # Setting cursor (pirate looks insanely cool with breeze hacked)
 exec_always --no-startup-id xsetroot -xcf /usr/share/icons/Breeze_Hacked/cursors/pirate 36
@@ -82,7 +82,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # xbacklight to adjust sceen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +2
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight +0.25
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -2
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -0.25
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -151,7 +153,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Lock screen
-bindsym $mod+Shift+x exec i3lock -k -B 8 --radius 105 --ring-width 10 --inside-color=77777755 --ring-color=eeeeee55 --indicator --keyhl-color=ffffff55 --bshl-color=00000055 --insidewrong-color=eeeeee55 --ringwrong-color=ffffff55 --insidever-color=77777755 --ringver-color=eeeeee55 --time-font="Fantasque Sans Mono" --date-font="Fantasque Sans Mono" --verif-font="Fantasque Sans Mono" --wrong-font="Fantasque Sans Mono" --keylayout 2 --layout-font="Fantasque Sans Mono" --verif-text="Verifying..." --wrong-text="Wrong!" --noinput-text="No input!" --pass-media-keys --pass-screen-keys
+bindsym $mod+Shift+x exec i3lock -k -B 8 --radius 105 --ring-width 10 --inside-color=77777755 --ring-color=eeeeee55 --indicator --keyhl-color=ffffff55 --bshl-color=00000055 --insidewrong-color=eeeeee55 --ringwrong-color=ffffff55 --insidever-color=77777755 --ringver-color=eeeeee55 --time-font="Fantasque Sans Mono" --date-font="Fantasque Sans Mono" --verif-font="Fantasque Sans Mono" --wrong-font="Fantasque Sans Mono" --keylayout 2 --layout-font="Fantasque Sans Mono" --verif-text="Verifying..." --wrong-text="Wrong!" --noinput-text="No input!" --pass-media-keys --pass-screen-keys --pass-power-keys
 
 # dmenu
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run -b -l -p -fn "Fantasque Sans Mono:Bold:size=13" -nb \#001721 -nf \#eee8d5 -sb \#268bd2 -sf \#001721
