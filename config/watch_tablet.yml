@@ -1,0 +1,9 @@
+input_device: /dev/input/event13
+modes:
+  laptop:
+    - killall -s SIGTERM screenrotator &
+    - ~/.config/polybar/mode.sh laptop &
+  tablet:
+    - ~/.config/polybar/mode.sh tablet &
+    - ~/.config/polybar/mode.sh landscape &
+    - screenrotator &

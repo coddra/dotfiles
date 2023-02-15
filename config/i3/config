@@ -3,16 +3,24 @@
 ########
 
 # border
-default_border pixel 2
+default_border pixel 4
 
 # gaps
 hide_edge_borders both
-gaps inner 20
-gaps outer 0
+gaps inner 25
+gaps top 17
 
 # font
 font pango: Fantasque Sans Mono 8
 
+# class                 border   backgr.  text     indicator  child_border
+client.focused          #eecf71  #eecf71  #eecf71  #eecf71    #eecf71
+client.focused_inactive #c86f8f  #c86f8f  #c86f8f  #c86f8f    #c86f8f
+client.unfocused        #0d80ac  #0d80ac  #0d80ac  #0d80ac    #0d80ac
+client.urgent           #e61b15  #e61b15  #e61b15  #e61b15    #e61b15
+client.placeholder      #48a800  #48a800  #48a800  #48a800    #48a800
+
+client.background       #000000
 
 
 #############
@@ -40,31 +48,31 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # Wallpaper
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper
+exec_always --no-startup-id feh --bg-fill ~/.config/i3/wallpaper
 
 # Compositor
 exec --no-startup-id picom
 
-# shutter
-exec --no-startup-id shutter --min_at_startup --disable_systray
+# Execute custom scripts on switching to tablet or laptop mode
+exec --no-startup-id watch_tablet
+
+# On-Screen keyboard tray
+exec --no-startup-id onboard
 
 # redshift
-exec --no-startup-id redshift -b 1.0:0.3 -l 49:16 -t 6500:3500
-
-# Setting cursor (pirate looks insanely cool with breeze hacked)
-exec_always --no-startup-id xsetroot -xcf /usr/share/icons/Breeze_Hacked/cursors/pirate 36
+# exec --no-startup-id redshift -b 1.0:0.3 -l 49:16 -t 6500:3500
 
 # Polybar
-exec --no-startup-id polybar placeholder
-exec --no-startup-id polybar main
-exec --no-startup-id polybar workspaces
-exec --no-startup-id polybar tray
+exec --no-startup-id ~/.config/polybar/launch.sh
 
 # Alternating layouts
-exec_always --no-startup-id alternating_layouts.py
+exec_always --no-startup-id autotiling
 
 # Keyboard layout
 exec_always --no-startup-id setxkbmap -layout us,hu -option grp:win_space_toggle
+
+# Set minimum backlight
+exec_always --no-startup-id light -N 0.1
 
 
 
@@ -80,11 +88,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-# xbacklight to adjust sceen brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +2
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight +0.25
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -2
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -0.25
+# light to adjust sceen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id light -T 1.2
+bindsym XF86MonBrightnessDown exec --no-startup-id light -T 0.8333333
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -93,7 +99,7 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # Restart polybar
-bindsym $mod+Shift+p exec polybar-msg cmd restart
+bindsym $mod+Shift+p exec ~/.config/polybar/launch.sh
 
 # Change focus
 bindsym $mod+h focus left
@@ -119,28 +125,26 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen
 
 # Switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace 1; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+2 workspace 2; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+3 workspace 3; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+4 workspace 4; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+5 workspace 5; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+6 workspace 6; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+7 workspace 7; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+8 workspace 8; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+9 workspace 9; exec ~/.config/polybar/wsindicator-update.sh
 
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1; workspace 1
-bindsym $mod+Shift+2 move container to workspace 2; workspace 2
-bindsym $mod+Shift+3 move container to workspace 3; workspace 3
-bindsym $mod+Shift+4 move container to workspace 4; workspace 4
-bindsym $mod+Shift+5 move container to workspace 5; workspace 5
-bindsym $mod+Shift+6 move container to workspace 6; workspace 6
-bindsym $mod+Shift+7 move container to workspace 7; workspace 7
-bindsym $mod+Shift+8 move container to workspace 8; workspace 8
-bindsym $mod+Shift+9 move container to workspace 9; workspace 9
-bindsym $mod+Shift+0 move container to workspace 10; workspace 10
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+9 move container to workspace 9; workspace 9; exec ~/.config/polybar/wsindicator-update.sh
 
 # Next/previous workspace
 bindsym $mod+Ctrl+l workspace next
@@ -162,9 +166,8 @@ bindsym $mod+Shift+d exec --no-startup-id dmenu_run -b -l -p -fn "Fantasque Sans
 bindsym $mod+x exec sleep 0.2 && xkill > /dev/null 2>&1 &
 
 # shutter
-bindsym $mod+Print exec shutter -s -o "~/Documents/Screenshots/%y-%m-%d_%T.png"
-bindsym Print exec shutter -f -o "~/Documents/Screenshots/%y-%m-%d_%T.png"
-
+bindsym $mod+Print exec flameshot gui
+bindsym Print exec flameshot full
 # Toggle grayscale
 bindsym $mod+Shift+g exec sh ~/.config/i3/toggle-monitor-grayscale.sh
 
@@ -176,8 +179,12 @@ bindsym $mod+d exec discord
 bindsym $mod+e exec alacritty -t Ranger --class ranger -e ranger
 bindsym $mod+Shift+e exec alacritty -t Ranger --class ranger -e doas ranger
 bindsym $mod+a exec alacritty -t HTop --class htop -e htop
-bindsym $mod+w exec alacritty -t nmtui --class nmtui -e nmtui
+bindsym $mod+w exec write
 bindsym $mod+t exec emacs
+bindsym $mod+Shift+b exec blueman-manager
+
+# Window rules
+for_window [class="Blueman-manager"] floating enable
 
 # Using polybar
 bar {
