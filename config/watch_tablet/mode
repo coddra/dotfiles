@@ -1,0 +1,54 @@
+#!/usr/bin/bash
+
+cd "$(dirname "$0")"
+
+if [[ $# -eq 0 ]]; then
+    cat ./active-mode
+    exit
+fi
+
+case "$1" in
+    "lock")
+        touch lock
+        exit
+        ;;
+    "unlock")
+        rm -f lock
+        exit
+        ;;
+    "locked")
+        if ls lock &>/dev/null; then
+            exit
+        fi
+        exit 1
+        ;;
+    "toggle-lock")
+	if ./mode locked; then
+	    ./mode unlock
+	else
+	    ./mode lock
+	fi
+	exit
+	;;
+esac
+
+if ls lock &>/dev/null; then
+    exit 1
+fi
+
+case "$1" in
+    "laptop")
+        killall -s SIGTERM screenrotator &
+        ~/.config/polybar/mode laptop &
+        echo laptop > ./active-mode
+        ;;
+    "tablet")
+        ~/.config/polybar/mode tablet &
+        ~/.config/polybar/mode landscape &
+        screenrotator &
+        echo tablet > ./active-mode
+        ;;
+    *)
+        echo "Usage: $0 [lock|unlock|locked|toggle-lock|laptop|tablet]"
+        ;;
+esac

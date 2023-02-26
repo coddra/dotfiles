@@ -1,6 +1,9 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+echo 'Locking mode'
+~/.config/watch_tablet/mode lock
+
 echo 'Terminating all previous instances'
 polybar-msg cmd quit
 
@@ -12,7 +15,7 @@ do
 		polybar -q ws-$i$tab &
 	done
 
-	./group.sh 9 wss$tab
+	./group 9 wss$tab
 done
 
 echo 'Running sytem info'
@@ -26,7 +29,7 @@ polybar -q layout &
 polybar -q sound &
 polybar -q brightness &
 
-./group.sh 9 sysinfo
+./group 9 sysinfo
 
 echo 'Orientation specific bars'
 for o in 'landscape' 'portrait'
@@ -36,23 +39,26 @@ do
 	polybar -q battery-$o &
 	polybar -q sound-$o &
 	polybar -q brightness-$o &
-	./group.sh 5 $o
+	./group 5 $o
 done
 
 echo 'Background elements'
 polybar -q bg-date &
-./group.sh 1 bg
+./group 1 bg
 
 sleep 5
 
 echo 'Starting messaging section'
-./mode.sh laptop
+./mode force laptop
 
 echo 'Writing workspace information'
-~/.config/polybar/wsindicator-update.sh
+~/.config/polybar/wsindicator-update
 
 #These are launched only at the end, this way they end up behind the bg-date bar
 polybar -q bg-clock &
-./group.sh --add 1 bg
+./group --add 1 bg
+
+echo 'Unlocking mode'
+~/.config/watch_tablet/mode unlock
 
 echo 'Done'

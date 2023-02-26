@@ -53,17 +53,14 @@ exec_always --no-startup-id feh --bg-fill ~/.config/i3/wallpaper
 # Compositor
 exec --no-startup-id picom
 
-# Execute custom scripts on switching to tablet or laptop mode
-exec --no-startup-id watch_tablet
-
 # On-Screen keyboard tray
 exec --no-startup-id onboard
 
 # redshift
-# exec --no-startup-id redshift -b 1.0:0.3 -l 49:16 -t 6500:3500
+#exec --no-startup-id redshift -b 1.0:0.3 -l 49:16 -t 6500:3500
 
 # Polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id ~/.config/polybar/launch
 
 # Alternating layouts
 exec_always --no-startup-id autotiling
@@ -73,6 +70,9 @@ exec_always --no-startup-id setxkbmap -layout us,hu -option grp:win_space_toggle
 
 # Set minimum backlight
 exec_always --no-startup-id light -N 0.1
+
+# Execute custom scripts on switching to tablet or laptop mode
+exec --no-startup-id watch_tablet
 
 
 
@@ -99,7 +99,7 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # Restart polybar
-bindsym $mod+Shift+p exec ~/.config/polybar/launch.sh
+bindsym $mod+Shift+p exec ~/.config/polybar/launch
 
 # Change focus
 bindsym $mod+h focus left
@@ -125,26 +125,26 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen
 
 # Switch to workspace
-bindsym $mod+1 workspace 1; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+2 workspace 2; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+3 workspace 3; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+4 workspace 4; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+5 workspace 5; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+6 workspace 6; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+7 workspace 7; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+8 workspace 8; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+9 workspace 9; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+1 workspace 1; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+2 workspace 2; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+3 workspace 3; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+4 workspace 4; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+5 workspace 5; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+6 workspace 6; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+7 workspace 7; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+8 workspace 8; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+9 workspace 9; exec ~/.config/polybar/wsindicator-update
 
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1; workspace 1; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+2 move container to workspace 2; workspace 2; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+3 move container to workspace 3; workspace 3; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+4 move container to workspace 4; workspace 4; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+5 move container to workspace 5; workspace 5; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+6 move container to workspace 6; workspace 6; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+7 move container to workspace 7; workspace 7; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+8 move container to workspace 8; workspace 8; exec ~/.config/polybar/wsindicator-update.sh
-bindsym $mod+Shift+9 move container to workspace 9; workspace 9; exec ~/.config/polybar/wsindicator-update.sh
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8; exec ~/.config/polybar/wsindicator-update
+bindsym $mod+Shift+9 move container to workspace 9; workspace 9; exec ~/.config/polybar/wsindicator-update
 
 # Next/previous workspace
 bindsym $mod+Ctrl+l workspace next

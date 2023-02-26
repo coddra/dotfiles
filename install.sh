@@ -3,7 +3,7 @@
 DIR=$PWD
 
 # INSTALLATION
-sudo pacman -S --needed alacritty autotiling chromium clang discord doas dotnet-sdk emacs fish inotify-tools libreoffice light llvm onboard pdfjs picom polybar python-adblock python-pip qutebrowser ranger touchegg ueberzug vim
+sudo pacman -S --needed alacritty autotiling chromium clang discord doas dotnet-sdk emacs fish inotify-tools libreoffice light llvm obs-studio onboard pdfjs picom polybar python-adblock python-pip qutebrowser ranger touchegg ueberzug vim
 
 # Create doas config as I would like to use it from now on
 echo "permit persist $USER as root" | sudo tee /etc/doas.conf
@@ -61,4 +61,4 @@ rsync $FLAGS doom/ ~/.doom.d/
 # REMOVE UNNECCESSARY PACKAGES AND FILES
 doas pacman -R firedragon conky-manager conky garuda-zsh-config zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting zsh
 
-rm -rf ~/.zshrc ~/.bashrc_garuda
+rm -rf ~/.zshrc ~/.bashrc_garuda ~/.firedragon

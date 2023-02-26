@@ -1,1 +1,65 @@
-laptop
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+if [[ $# -eq 0 ]]; then
+    cat ./active-mode
+    exit
+fi
+
+if ~/.config/watch_tablet/mode locked; then
+    if [[ "$1" == "force" ]]; then
+        shift 1
+    else
+        exit 1
+    fi
+fi
+
+
+
+case "$1" in
+    "laptop")
+        ./group-msg tray quit
+        ./group-msg wss-tablet hide
+        ./group-msg portrait hide
+        ./group-msg landscape hide
+        i3-msg gaps top all set 17
+        i3-msg gaps bottom all set 0
+        ./group-msg wss show
+        ./group-msg sysinfo show
+        polybar -q tray &
+        ./group 1 tray
+        feh --bg-fill ~/.config/i3/wallpaper
+        echo laptop > ./active-mode
+        ;;
+    "tablet")
+        ./group-msg wss hide
+        ./group-msg sysinfo hide
+        i3-msg gaps top all set 49
+        ./group-msg wss-tablet show
+        echo tablet > ./active-mode
+        ;;
+    "portrait")
+        ./group-msg tray quit
+        ./group-msg landscape hide
+        i3-msg gaps bottom all set 49
+        ./group-msg portrait show
+        polybar -q tray-portrait &
+        ./group 1 tray
+        feh --bg-fill ~/.config/i3/wallpaper
+        echo portrait > ./active-mode
+        ;;
+    "landscape")
+        ./group-msg tray quit
+        ./group-msg portrait hide
+        i3-msg gaps bottom all set 0
+        ./group-msg landscape show
+        polybar -q tray-landscape &
+        ./group 1 tray
+        feh --bg-fill ~/.config/i3/wallpaper
+        echo landscape > ./active-mode
+        ;;
+    *)
+        echo "Usage: $0 [force] [laptop|tablet|portrait|landscape]"
+        ;;
+esac
