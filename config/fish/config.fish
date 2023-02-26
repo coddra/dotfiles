@@ -134,6 +134,9 @@ alias spc="paru -Ss"
 alias sysupdt="doas pacman -Syu"
 alias shutup="shutdown now"
 
+alias pat="pass get pat"
+alias psf="pass safe"
+
 alias cp="rsync --mkpath -pr"
 
 alias logout="pkill -KILL -u $USER"
