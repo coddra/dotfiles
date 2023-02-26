@@ -1,3 +1,3 @@
 #!/bin/bash
 
-~/.config/polybar/mode.sh portrait
+~/.config/polybar/mode portrait

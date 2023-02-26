@@ -1,3 +1,3 @@
 #!/bin/bash
 
-~/.config/polybar/mode.sh landscape
+~/.config/polybar/mode landscape
