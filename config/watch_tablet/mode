@@ -2,12 +2,11 @@
 
 cd "$(dirname "$0")"
 
-if [[ $# -eq 0 ]]; then
-    cat ./active-mode
-    exit
-fi
-
 case "$1" in
+    "")
+        cat ./active-mode
+        exit
+        ;;
     "lock")
         touch lock
         exit
@@ -23,16 +22,20 @@ case "$1" in
         exit 1
         ;;
     "toggle-lock")
-	if ./mode locked; then
-	    ./mode unlock
-	else
-	    ./mode lock
-	fi
-	exit
-	;;
+        if ./mode locked; then
+            ./mode unlock
+        else
+            ./mode lock
+        fi
+        exit
+        ;;
 esac
 
-if ls lock &>/dev/null; then
+if ./mode locked; then
+    if [[ $(./mode) -eq "$1" ]]; then
+        ./mode unlock
+        exit
+    fi
     exit 1
 fi
 
