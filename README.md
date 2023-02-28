@@ -1,6 +1,6 @@
 # Dotfiles
 
-**WARNING!** `install.sh` is not tested.
+**WARNING!** `manage.sh` is not tested.
 
 You can find some of my dotfiles in this repository. Feel free to use them for anything you'd like!
 
@@ -8,4 +8,4 @@ You can find some of my dotfiles in this repository. Feel free to use them for a
 
 ## Usage
 
-Run `install.sh` on a fresh Garuda I3 installation.
+Run `manage.sh install` on a fresh Garuda I3 installation.
