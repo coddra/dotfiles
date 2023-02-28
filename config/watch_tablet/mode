@@ -21,37 +21,52 @@ case "$1" in
         fi
         exit 1
         ;;
-    "toggle-lock")
-        if ./mode locked; then
-            ./mode unlock
-        else
-            ./mode lock
+    "toggle")
+        if [[ "$2" = "lock" ]]; then
+            if ./mode locked; then
+                ./mode unlock
+            else
+                ./mode lock
+            fi
+            exit
         fi
-        exit
         ;;
 esac
 
 if ./mode locked; then
-    if [[ $(./mode) -eq "$1" ]]; then
-        ./mode unlock
-        exit
+    if [[ "$1" = "force" ]]; then
+        shift 1
+        FORCE="force"
+    else
+        if [[ $(./mode) = "$1" ]]; then
+            ./mode unlock
+            exit
+        fi
+        echo "Locked"
+        exit 1
     fi
-    exit 1
 fi
 
 case "$1" in
     "laptop")
         killall -s SIGTERM screenrotator &
-        ~/.config/polybar/mode laptop &
+        eval "~/.config/polybar/mode $FORCE laptop &"
         echo laptop > ./active-mode
         ;;
     "tablet")
-        ~/.config/polybar/mode tablet &
-        ~/.config/polybar/mode landscape &
+        eval "~/.config/polybar/mode $FORCE tablet &"
+        eval "~/.config/polybar/mode $FORCE landscape &"
         screenrotator &
         echo tablet > ./active-mode
         ;;
+    "toggle")
+        if [[ "$(./mode)" = "laptop" ]]; then
+            eval "./mode $FORCE tablet"
+        else
+            eval "./mode $FORCE laptop"
+        fi
+        ;;
     *)
-        echo "Usage: $0 [lock|unlock|locked|toggle-lock|laptop|tablet]"
+        echo "Usage: $0 [[force] laptop|tablet|toggle | lock|unlock|locked|toggle lock]"
         ;;
 esac
