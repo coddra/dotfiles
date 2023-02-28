@@ -6,7 +6,6 @@ if [ "$1" = "force" ]; then
     shift 1
 else
     RFLAGS="-au"
-    FORCE=""
 fi
 
 case "$1" in
@@ -14,7 +13,10 @@ case "$1" in
         case "$2" in
             "git")
                 for file in "$(dirname "$0")/config/*"; do
-                    rsync $RFLAGS "~/.config/$file" "$(dirname "$0")/config/"
+                    FILES="$FILES $file"
+                done
+                for file in $FILES; do
+                    rsync $RFLAGS "/home/$USER/.config/$(basename "$file")" "$(dirname "$0")/config/"
                 done
 
                 rsync $RFLAGS ~/.doom.d/ "$(dirname "0")/doom/"
