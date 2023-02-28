@@ -53,3 +53,4 @@
 (package! company-dcd)
 (package! flycheck-dmd-dub)
 (package! omnisharp)
+(package! yaml-mode)
