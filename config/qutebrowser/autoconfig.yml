@@ -22,8 +22,15 @@ settings:
     global: both
   content.cookies.accept:
     global: no-3rdparty
+  content.media.audio_capture:
+    https://meet.google.com: true
+  content.media.audio_video_capture:
+    https://meet.google.com: true
+  content.media.video_capture:
+    https://meet.google.com: true
   content.notifications.enabled:
     https://ibb.co: false
+    https://meet.google.com: false
     https://www.facebook.com: false
     https://www.reddit.com: false
     https://www.youtube.com: false
