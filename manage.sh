@@ -1,11 +1,11 @@
 #! /bin/bash
 
+RFLAGS="-avv"
 if [ "$1" = "force" ]; then
-    RFLAGS="-a"
     FORCE="force"
     shift 1
 else
-    RFLAGS="-au"
+    RFLAGS="$RFLAGS -u"
 fi
 
 case "$1" in
@@ -78,7 +78,7 @@ case "$1" in
         eval "$0 $FORCE update config"
 
         # REMOVE UNNECCESSARY PACKAGES AND FILES
-        doas pacman -R conky-manager conky firedragon garuda-zsh-config rofi zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting zsh
+        doas pacman -Rs conky-manager conky firedragon garuda-zsh-config rofi thunar-archive-plugin thunar-media-tags-plugin thunar-volman thunar zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting zsh
 
         rm -rf ~/.zshrc ~/.bashrc_garuda ~/.firedragon
         ;;

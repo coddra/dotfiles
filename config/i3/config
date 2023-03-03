@@ -62,6 +62,10 @@ exec --no-startup-id onboard
 # Polybar
 exec --no-startup-id ~/.config/polybar/launch
 
+# Screenrotator
+exec --no-startup-id screenrotator --- ~/.config/polybar/mode landscape --- ~/.config/polybar/mode portrait
+exec --no-startup-id screenrotator-msg lock
+
 # Alternating layouts
 exec_always --no-startup-id autotiling
 

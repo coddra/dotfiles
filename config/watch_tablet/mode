@@ -49,14 +49,14 @@ fi
 
 case "$1" in
     "laptop")
-        killall -s SIGTERM screenrotator &
+        screenrotator-msg reset lock
         eval "~/.config/polybar/mode $FORCE laptop &"
         echo laptop > ./active-mode
         ;;
     "tablet")
         eval "~/.config/polybar/mode $FORCE tablet &"
         eval "~/.config/polybar/mode $FORCE landscape &"
-        screenrotator &
+        screenrotator-msg unlock
         echo tablet > ./active-mode
         ;;
     "toggle")
