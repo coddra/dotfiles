@@ -63,8 +63,9 @@ case "$1" in
         rsync --mkpath paru/paru.conf ~/.config/paru/paru.conf
         paru -S --needed alacritty-themes detect-tablet-mode-git ttf-dejavu-sans-code
 
-        # Get stdbuf
-        pip install stdbuf
+        # Get python packages
+        pip install pynput stdbuf
+        curl -sSL https://install.python-poetry.org | python3 -
 
         # ALLOW LIGHT TO ACCESS BRIGHTNESS
         doas chmod o+w /sys/class/backlight/intel_backlight/brightness
