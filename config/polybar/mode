@@ -25,19 +25,21 @@ case "$1" in
         ./group-msg landscape hide
         i3-msg gaps top all set 17
         i3-msg gaps bottom all set 0
+        echo laptop > ./active-mode
+        ./wsupdater.py single-shot
         ./group-msg wss show
         ./group-msg sysinfo show
         polybar -q tray &
         ./group 1 tray
         feh --bg-fill ~/.config/i3/wallpaper
-        echo laptop > ./active-mode
         ;;
     "tablet")
         ./group-msg wss hide
         ./group-msg sysinfo hide
         i3-msg gaps top all set 49
-        ./group-msg wss-tablet show
         echo tablet > ./active-mode
+        ./wsupdater.py single-shot
+        ./group-msg wss-tablet show
         ;;
     "portrait")
         ./group-msg tray quit

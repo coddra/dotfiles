@@ -50,9 +50,7 @@ sleep 5
 
 echo 'Starting messaging section'
 ./mode force laptop
-
-echo 'Writing workspace information'
-~/.config/polybar/wsindicator-update
+./wsupdater.py &
 
 #These are launched only at the end, this way they end up behind the bg-date bar
 polybar -q bg-clock &

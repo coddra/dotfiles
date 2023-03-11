@@ -53,7 +53,6 @@ case "$1" in
         # Write
         wget http://www.styluslabs.com/download/write-tgz -O ~/Downloads/write-tgz
         tar -xvzf ~/Downloads/write-tgz -C ~/Code/Build
-        doas ln -s ~/Code/Build/Write/Write /bin/write
 
         # ScreanRot (my fork on GuLinux's screenrotator)
         git clone https://github.com/coddra/screanRot ~/Code/Build/ScreanRot
@@ -66,6 +65,9 @@ case "$1" in
         # Get python packages
         pip install pynput stdbuf
         curl -sSL https://install.python-poetry.org | python3 -
+
+        git clone https://github.com/coddra/i3-py ~/Code/Build/i3-py
+        pip install ~/Code/Build/i3-py
 
         # ALLOW LIGHT TO ACCESS BRIGHTNESS
         doas chmod o+w /sys/class/backlight/intel_backlight/brightness
