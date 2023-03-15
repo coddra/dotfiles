@@ -2,20 +2,52 @@
 
 cd "$(dirname "$0")"
 
-if [[ $# -eq 0 ]]; then
-    cat ./active-mode
-    exit
-fi
+case "$1" in
+    "")
+        if [[ "$(./group-msg tray 2>&1 > /dev/null)" == "polybar-msg"* ]]; then
+            echo "down"
+        elif ls ./active-mode &>/dev/null; then
+            echo "laptop"
+        else
+            cat active-mode
+        fi
+        exit
+        ;;
+    "lock")
+        touch lock
+        ./group-msg lock hook 1
+        exit
+        ;;
+    "unlock")
+        rm -f lock
+        ./group-msg lock hook 0
+        exit
+        ;;
+    "locked")
+        if ls lock &>/dev/null; then
+            exit
+        fi
+        exit 1
+        ;;
+    "toggle")
+        if [[ "$2" = "lock" ]]; then
+            if ./mode locked; then
+                ./mode unlock
+            else
+                ./mode lock
+            fi
+            exit
+        fi
+        ;;
+esac
 
-if ~/.config/watch_tablet/mode locked; then
-    if [[ "$1" = "force" ]]; then
-        shift 1
-    else
+if [[ "$1" = "force" ]]; then
+    shift 1
+else
+    if ./mode locked; then
         exit 1
     fi
 fi
-
-
 
 case "$1" in
     "laptop")
@@ -30,8 +62,8 @@ case "$1" in
         ./group-msg wss show
         ./group-msg sysinfo show
         polybar -q tray &
-        ./group 1 tray
         feh --bg-fill ~/.config/i3/wallpaper
+        ./group 1 tray
         ;;
     "tablet")
         ./group-msg wss hide
@@ -47,8 +79,8 @@ case "$1" in
         i3-msg gaps bottom all set 49
         ./group-msg portrait show
         polybar -q tray-portrait &
-        ./group 1 tray
         feh --bg-fill ~/.config/i3/wallpaper
+        ./group 1 tray
         echo portrait > ./active-mode
         ;;
     "landscape")
@@ -57,11 +89,11 @@ case "$1" in
         i3-msg gaps bottom all set 0
         ./group-msg landscape show
         polybar -q tray-landscape &
-        ./group 1 tray
         feh --bg-fill ~/.config/i3/wallpaper
+        ./group 1 tray
         echo landscape > ./active-mode
         ;;
     *)
-        echo "Usage: $0 [force] [laptop|tablet|portrait|landscape]"
+        echo "Usage: $0 [[force] laptop|tablet|portrait|landscape | lock|unlock|locked|toggle lock]"
         ;;
 esac

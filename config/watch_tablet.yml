@@ -1,6 +1,6 @@
-input_device: /dev/input/by-path/pci-0000:00:1f.0-platform-INT33D6:00-event
+input_device: /dev/input/event13
 modes:
   laptop:
-    - ~/.config/watch_tablet/mode laptop
+    - ~/.config/watch_tablet/mode laptop &
   tablet:
-    - ~/.config/watch_tablet/mode tablet
+    - ~/.config/watch_tablet/mode tablet &

@@ -59,21 +59,20 @@ exec --no-startup-id onboard
 # redshift
 #exec --no-startup-id redshift -b 1.0:0.3 -l 49:16 -t 6500:3500
 
-# Polybar
-exec --no-startup-id ~/.config/polybar/launch
+# Screenrowtator
+exec --no-startup-id screenrotator --- ~/.config/polybar/mode landscape --- ~/.config/polybar/mode portrait --- ~/.config/polybar/mode lock --- ~/.config/polybar/mode unlock
 
-# Screenrotator
-exec --no-startup-id screenrotator --- ~/.config/polybar/mode landscape --- ~/.config/polybar/mode portrait
-exec --no-startup-id screenrotator-msg lock
+# Polybar and Watchtablet init
+exec --no-startup-id ~/.config/watch_tablet/mode force laptop
 
 # Alternating layouts
-exec_always --no-startup-id autotiling
+exec --no-startup-id autotiling
 
 # Keyboard layout
 exec_always --no-startup-id setxkbmap -layout us,hu -option grp:win_space_toggle
 
 # Set minimum backlight
-exec_always --no-startup-id light -N 0.1
+exec --no-startup-id light -N 0.1
 
 # Execute custom scripts on switching to tablet or laptop mode
 exec --no-startup-id watch_tablet

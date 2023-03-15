@@ -32,14 +32,17 @@ polybar -q brightness &
 ./group 9 sysinfo
 
 echo 'Orientation specific bars'
+> ./pids/lock
 for o in 'landscape' 'portrait'
 do
 	polybar -q X-$o &
+	polybar -q lock-$o &
+	./group --add 1 lock
 	polybar -q date-$o &
 	polybar -q battery-$o &
 	polybar -q sound-$o &
 	polybar -q brightness-$o &
-	./group 5 $o
+	./group 6 $o
 done
 
 echo 'Background elements'
@@ -49,10 +52,17 @@ polybar -q bg-date &
 sleep 5
 
 echo 'Starting messaging section'
-./mode force laptop
+if [[ "$(~/.config/watch_tablet/mode)" = "laptop" ]]; then
+	./mode force laptop
+else
+	./mode force tablet
+	./mode force "$(~/.config/polybar/mode)"
+fi
+
+killall wsupdater.py
 ./wsupdater.py &
 
-#These are launched only at the end, this way they end up behind the bg-date bar
+#This is launched only at the end, this way it ends up behind the bg-date bar
 polybar -q bg-clock &
 ./group --add 1 bg
 

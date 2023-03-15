@@ -2,9 +2,17 @@
 
 cd "$(dirname "$0")"
 PIDS=$(cat "./pids/$1")
+
+if [[ "$2" = "hook" ]]; then
+	COMMAND="action $1"
+else
+	COMMAND="cmd"
+fi
+
 shift 1
+COMMAND="$COMMAND $@"
 
 for i in $PIDS
 do
-	polybar-msg -p $i cmd $@
+	polybar-msg -p $i $COMMAND
 done

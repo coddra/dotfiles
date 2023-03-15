@@ -4,7 +4,9 @@ cd "$(dirname "$0")"
 
 case "$1" in
     "")
-        cat ./active-mode
+        if ! cat ./active-mode; then
+            echo "laptop"
+        fi
         exit
         ;;
     "lock")
@@ -33,29 +35,39 @@ case "$1" in
         ;;
 esac
 
-if ./mode locked; then
-    if [[ "$1" = "force" ]]; then
-        shift 1
-        FORCE="force"
-    else
-        if [[ $(./mode) = "$1" ]]; then
-            ./mode unlock
-            exit
-        fi
-        echo "Locked"
-        exit 1
+if [[ "$1" = "force" ]]; then
+    shift 1
+    FORCE="force"
+fi
+
+if ./mode locked && [[ $FORCE != "force" ]]; then
+    echo "Locked"
+    exit 1
+fi
+
+if [[ $(./mode) = "$1" ]]; then
+    ./mode unlock
+    echo "Mode unlocked"
+    if [[ $FORCE != "force" ]]; then
+        exit
     fi
 fi
+
+if [[ $(~/.config/polybar/mode) = "down" ]]; then
+    ~/.config/polybar/launch
+fi
+
+~/.config/polybar/mode unlock
 
 case "$1" in
     "laptop")
         screenrotator-msg reset lock
-        eval "~/.config/polybar/mode $FORCE laptop &"
+        eval "~/.config/polybar/mode $FORCE laptop"
         echo laptop > ./active-mode
         ;;
     "tablet")
-        eval "~/.config/polybar/mode $FORCE tablet &"
-        eval "~/.config/polybar/mode $FORCE landscape &"
+        eval "~/.config/polybar/mode $FORCE tablet"
+        eval "~/.config/polybar/mode $FORCE landscape"
         screenrotator-msg unlock
         echo tablet > ./active-mode
         ;;
