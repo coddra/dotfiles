@@ -58,3 +58,27 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
 (add-to-list 'company-backends 'company-omnisharp)
+
+;; React Native
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
+(setq lsp-clients-typescript-server-args '("--stdio" "--tsserver-log-file" "/dev/stderr"))
+(setq tide-completion-detailed t)
+(setq tide-always-show-documentation t)
+
+(add-hook 'typescript-mode-hook 'lsp-deferred)
+(add-hook 'typescript-mode-hook 'tide-setup)
+(add-hook 'typescript-mode-hook 'company-mode)
+(add-hook 'typescript-mode-hook 'flycheck-mode)
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (setq tide-completion-detailed t)
+  (setq tide-always-show-documentation t)
+  (flycheck-add-next-checker 'typescript-tide 'javascript-eslint 'append)
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+
+(add-hook 'tide-mode-hook #'setup-tide-mode)

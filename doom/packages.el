@@ -54,3 +54,11 @@
 (package! flycheck-dmd-dub)
 (package! omnisharp)
 (package! yaml-mode)
+
+(package! lsp-mode)
+(package! lsp-ui)
+(package! company-lsp)
+(package! tide)
+(package! flycheck)
+(package! flycheck-flow)
+(package! typescript-mode)
