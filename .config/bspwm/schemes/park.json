@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/usr/share/backgrounds/park.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#09060a",
+        "foreground": "#e2d786",
+        "cursor": "#e2d786"
+    },
+    "colors": {
+        "color0": "#09060a",
+        "color1": "#9D2912",
+        "color2": "#D42F0B",
+        "color3": "#A45418",
+        "color4": "#E15F0C",
+        "color5": "#AB4E51",
+        "color6": "#ED970B",
+        "color7": "#e2d786",
+        "color8": "#9e965d",
+        "color9":  "#A6301A",
+        "color10": "#DB3A14",
+        "color11": "#B06120",
+        "color12": "#E86A15",
+        "color13": "#B45B5B",
+        "color14": "#F0A518",
+        "color15": "#E6DF99"
+    }
+}

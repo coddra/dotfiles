@@ -1,0 +1,10 @@
+# Ignore generated tags
+/doc/tags
+dist.bat
+*.zip
+tags
+*.sw[a-p]
+
+# Github token.
+github_token
+

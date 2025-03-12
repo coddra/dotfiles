@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/usr/share/backgrounds/gellert.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#14190d",
+        "foreground": "#c4d0dd",
+        "cursor": "#c4d0dd"
+    },
+    "colors": {
+        "color0": "#14190d",
+        "color1": "#AC8B66",
+        "color2": "#DAA761",
+        "color3": "#4A7292",
+        "color4": "#6B93B5",
+        "color5": "#ABAFB3",
+        "color6": "#F6D9A6",
+        "color7": "#B0C8E0",
+        "color8": "#89919a",
+        "color9": "#B59670",
+        "color10": "#E0B16B",
+        "color11": "#537A9B",
+        "color12": "#759EC1",
+        "color13": "#B6B9BE",
+        "color14": "#F7DEB0",
+        "color15": "#C2D8EE"
+    }
+}

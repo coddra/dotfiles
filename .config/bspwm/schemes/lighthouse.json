@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/usr/share/backgrounds/lighthouse.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0C0930",
+        "foreground": "#efc3df",
+        "cursor": "#efc3df"
+    },
+    "colors": {
+        "color0": "#0C0930",
+        "color1": "#9D5DB5",
+        "color2": "#E66BAA",
+        "color3": "#A26BCD",
+        "color4": "#D66CCA",
+        "color5": "#619CD5",
+        "color6": "#F69FAE",
+        "color7": "#efc3df",
+        "color8": "#a7889c",
+        "color9": "#A16BBF",
+        "color10": "#E87AB3",
+        "color11": "#AC75D4",
+        "color12": "#DD75D1",
+        "color13": "#6AA5DD",
+        "color14": "#F7A9B7",
+        "color15": "#F2CCE5"
+    }
+}

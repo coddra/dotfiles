@@ -1,0 +1,3 @@
+[submodule ".config/qutebrowser/pywalQute"]
+	path = .config/qutebrowser/pywalQute
+	url = https://github.com/makman12/pywalQute

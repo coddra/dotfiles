@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/usr/share/backgrounds/tokyo.png",
+    "alpha": "100",
+    "special": {
+        "background": "#0d1115",
+        "foreground": "#a5cde5",
+        "cursor": "#a5cde5"
+    },
+    "colors": {
+        "color0": "#0d1115",
+        "color1": "#555062",
+        "color2": "#B55E74",
+        "color3": "#5A698C",
+        "color4": "#A66794",
+        "color5": "#D96E8B",
+        "color6": "#DA73A2",
+        "color7": "#a5cde5",
+        "color8": "#738fa0",
+        "color9": "#5e596d",
+        "color10": "#C4687E",
+        "color11": "#63729a",
+        "color12": "#B26C9E",
+        "color13": "#E07893",
+        "color14": "#E37CAF",
+        "color15": "#b0d4e9"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/usr/share/backgrounds/cyberpunk2.jpeg",
+    "alpha": "100",
+    "special": {
+        "background": "#050E18",
+        "foreground": "#f2c7c1",
+        "cursor": "#f2c7c1"
+    },
+    "colors": {
+        "color0": "#050E18",
+        "color1": "#5B4C66",
+        "color2": "#BA5467",
+        "color3": "#EE8B77",
+        "color4": "#4364A9",
+        "color5": "#BC5BB6",
+        "color6": "#329ED9",
+        "color7": "#f2c7c1",
+        "color8": "#a98b87",
+        "color9": "#6F567D",
+        "color10": "#D06573",
+        "color11": "#FF9C8D",
+        "color12": "#5274BF",
+        "color13": "#D26AC7",
+        "color14": "#42B5F2",
+        "color15": "#F9DCCF"
+    }
+}

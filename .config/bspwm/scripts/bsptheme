@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo "usage: $0 <layout(theme)> [wallpaper|scheme]>"
+    exit 1
+fi
+
+wdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+cmd="$wdir/../themes/$1/apply.sh"
+
+if [ -n "$2" ]; then
+    scheme=$(find "$wdir/../schemes/" -name "$2.json")
+    if [ -n "$scheme" ]; then
+        cmd="$cmd --theme \"$scheme\""
+    else
+        background=$(find "/usr/share/backgrounds/" -name "$2.*")
+        if [ -n "$background" ]; then
+            cmd="$cmd -i \"$background\""
+        else
+            echo "can't file scheme or wallpaper: $1"
+        fi
+    fi
+else
+    cmd="$cmd --theme \"$wdir/../schemes/$1.json\""
+fi
+eval "$cmd"
