@@ -16,7 +16,9 @@ elif [ "$1" == "--full" ]; then
 			  window.padding.x=30 window.padding.y=30 \
 			  window.opacity=0.95 font.size=14
 elif [ "$1" == "--app" ]; then
-    alacritty --class "$2,$2" --title "$2" --config-file "$CONFIG" -e ${@}
+    name="$2"
+    shift
+    alacritty --class "$name,$name" --title "$name" --config-file "$CONFIG" -e ${@}
 else
 	alacritty --config-file "$CONFIG" ${@}
 fi
